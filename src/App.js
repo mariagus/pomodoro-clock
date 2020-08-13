@@ -4,23 +4,62 @@ import "./App.css";
 function App() {
   const [sessionType, setSessionType] = useState("WORK!"); //state changes to "BREAK" when timer reaches zero.
   const [min, setMin] = useState(25);
+  const [mins, setMins] = useState(25);
   const [sec, setSec] = useState(0);
-  //const [timerRuns, setTimerRuns] = useState(false);
   const [breakLength, setBreakLength] = useState(5);
+  const [countDown, setCountDown] = useState(false);
 
-  const increment = () => setMin(min + 1);
-  const decrement = () => setMin(min - 1);
+  const increment = () => {
+    setMins(mins + 1);
+    setMin(min + 1);
+  };
+  const decrement = () => {
+    setMins(mins - 1);
+    setMin(min - 1);
+  };
   const incrementBreak = () => setBreakLength(breakLength + 1);
   const decrementBreak = () => setBreakLength(breakLength - 1);
-  //useEffect (function(){})
+  useEffect(() => {
+    if (countDown) {
+      if (sec === -1 && min > 0) {
+        setSec(59);
+        setMin(min - 1);
+      }
+      const interval = setInterval(() => {
+        if (sec === -1 && min === 0) {
+          clearInterval(interval);
+          interval();
+        }
+        if (sec === 0 && min === 0) {
+          return () => clearInterval(interval);
+        }
+        setSec(sec - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [min, sec, countDown]);
+  function handleStart() {
+    setCountDown(true);
+  }
+  function handlePause() {
+    setCountDown(false);
+  }
   return (
     <div className="App">
       <header>POMODORO CLOCK</header>
-      <Timer sessionType={sessionType} min={min} sec={sec} />{" "}
+      <Timer
+        handlePause={handlePause}
+        sessionType={sessionType}
+        handleStart={handleStart}
+        min={min}
+        sec={sec}
+      />{" "}
       <button
         id="reset"
         onClick={() => {
+          setCountDown(false);
           setMin(25);
+          setMins(25);
           setSec(0);
         }}
       >
@@ -38,7 +77,7 @@ function App() {
         <div id="session-label">
           SESSION LENGTH:{" "}
           <SessionSetter
-            min={min}
+            mins={mins}
             increment={increment}
             decrement={decrement}
           />
@@ -57,10 +96,12 @@ function Timer(props) {
         {props.sec < 10 ? `0${props.sec}` : props.sec}
       </h1>
       <div className="timerButtons">
-        <button id="start" onClick={() => console.log("clicked")}>
+        <button id="start" onClick={props.handleStart}>
           ▷
         </button>
-        <button id="pause">| |</button>
+        <button id="pause" onClick={props.handlePause}>
+          | |
+        </button>
       </div>
     </div>
   );
@@ -91,14 +132,14 @@ function SessionSetter(props) {
     <div className="SessionSetter">
       <button
         className="decrement"
-        onClick={() => (props.min > 1 ? props.decrement() : null)}
+        onClick={() => (props.mins > 1 ? props.decrement() : null)}
       >
         -
       </button>
-      {props.min}
+      {props.mins}
       <button
         className="increment"
-        onClick={() => (props.min < 60 ? props.increment() : null)}
+        onClick={() => (props.mins < 60 ? props.increment() : null)}
       >
         +
       </button>
