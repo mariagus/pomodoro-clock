@@ -41,7 +41,7 @@ function App() {
           return () => clearInterval(interval);
         }
         setSec(sec - 1);
-      }, 100);
+      }, 1000);
 
       return () => clearInterval(interval);
     }
