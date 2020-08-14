@@ -6,31 +6,63 @@ import "./App.css";
 function App() {
   const [sessionType, setSessionType] = useState("WORK!"); //state changes to "BREAK" when timer reaches zero.
   const [min, setMin] = useState(25);
-  const [mins, setMins] = useState(25);
   const [sec, setSec] = useState(0);
   const [breakLength, setBreakLength] = useState(5);
   const [countDown, setCountDown] = useState(false);
+  const [sessionLength, setSessionLength] = useState(25);
   const [breakCount, setBreakCount] = useState(false);
+
   const increment = () => {
-    setMin(mins);
-    setSec(0);
-    if (mins === min) {
-      setMins(mins + 1);
-      setMin(min + 1);
+    if (sessionType === "WORK!") {
+      setMin(sessionLength);
+      setSec(0);
+      if (sessionLength === min) {
+        setSessionLength(sessionLength + 1);
+        setMin(min + 1);
+      }
+    } else {
+      setSessionLength(sessionLength + 1);
     }
   };
   const decrement = () => {
-    setMin(mins);
-    setSec(0);
-    if (mins === min) {
-      setMins(mins - 1);
-      setMin(min - 1);
+    if (sessionType === "WORK!") {
+      setMin(sessionLength);
+      setSec(0);
+      if (sessionLength === min) {
+        setSessionLength(sessionLength - 1);
+        setMin(min - 1);
+      }
+    } else {
+      setSessionLength(sessionLength - 1);
     }
   };
 
   const bell = new UIfx(bellAudio);
-  const incrementBreak = () => setBreakLength(breakLength + 1);
-  const decrementBreak = () => setBreakLength(breakLength - 1);
+  const incrementBreak = () => {
+    if (sessionType === "BREAK!") {
+      setMin(breakLength);
+      setSec(0);
+      if (breakLength === min) {
+        setBreakLength(breakLength + 1);
+        setMin(min + 1);
+      }
+    } else {
+      setBreakLength(breakLength + 1);
+    }
+  };
+
+  const decrementBreak = () => {
+    if (sessionType === "BREAK!") {
+      setMin(breakLength);
+      setSec(0);
+      if (breakLength === min) {
+        setBreakLength(breakLength - 1);
+        setMin(min - 1);
+      }
+    } else {
+      setBreakLength(breakLength - 1);
+    }
+  };
 
   useEffect(() => {
     if (countDown || breakCount) {
@@ -64,10 +96,10 @@ function App() {
   }, [min, sec, countDown, breakCount, breakLength, bell]);
 
   function handleStart() {
-    setCountDown(true);
+    sessionType === "WORK!" ? setCountDown(true) : setBreakCount(true);
   }
   function handlePause() {
-    setCountDown(false);
+    sessionType === "WORK!" ? setCountDown(false) : setBreakCount(false);
   }
 
   return (
@@ -83,9 +115,11 @@ function App() {
       <button
         id="reset"
         onClick={() => {
+          setSessionType("WORK!");
           setCountDown(false);
+          setBreakCount(false);
           setMin(25);
-          setMins(25);
+          setSessionLength(25);
           setBreakLength(5);
           setSec(0);
         }}
@@ -105,7 +139,7 @@ function App() {
           SESSION LENGTH:{" "}
           <SessionSetter
             countDown={countDown}
-            mins={mins}
+            mins={sessionLength}
             increment={increment}
             decrement={decrement}
           />
@@ -136,7 +170,6 @@ function Timer(props) {
 }
 
 function BreakSetter(props) {
-  //const [breakLength, setBreakLength] = useState(5);
   return (
     <div className="BreakSetter">
       <button
