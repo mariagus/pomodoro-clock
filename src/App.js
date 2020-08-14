@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import UIfx from "uifx";
+import bellAudio from "./bell.mp3";
 import "./App.css";
 
 function App() {
@@ -17,8 +19,11 @@ function App() {
     setMins(mins - 1);
     setMin(min - 1);
   };
+
+  const bell = new UIfx(bellAudio);
   const incrementBreak = () => setBreakLength(breakLength + 1);
   const decrementBreak = () => setBreakLength(breakLength - 1);
+
   useEffect(() => {
     if (countDown) {
       if (sec === -1 && min > 0) {
@@ -31,19 +36,24 @@ function App() {
           interval();
         }
         if (sec === 0 && min === 0) {
+          setCountDown(false);
+          bell.play();
           return () => clearInterval(interval);
         }
         setSec(sec - 1);
-      }, 1000);
+      }, 100);
+
       return () => clearInterval(interval);
     }
-  }, [min, sec, countDown]);
+  }, [min, sec, countDown, bell]);
+
   function handleStart() {
     setCountDown(true);
   }
   function handlePause() {
     setCountDown(false);
   }
+
   return (
     <div className="App">
       <header>POMODORO CLOCK</header>
