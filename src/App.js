@@ -10,7 +10,7 @@ function App() {
   const [sec, setSec] = useState(0);
   const [breakLength, setBreakLength] = useState(5);
   const [countDown, setCountDown] = useState(false);
-
+  const [breakCount, setBreakCount] = useState(false);
   const increment = () => {
     setMin(mins);
     setSec(0);
@@ -33,7 +33,7 @@ function App() {
   const decrementBreak = () => setBreakLength(breakLength - 1);
 
   useEffect(() => {
-    if (countDown) {
+    if (countDown || breakCount) {
       if (sec === -1 && min > 0) {
         setSec(59);
         setMin(min - 1);
@@ -43,16 +43,25 @@ function App() {
           clearInterval(interval);
           interval();
         }
-        if (sec === 0 && min === 0) {
+        if (countDown && sec === 0 && min === 0) {
           setCountDown(false);
+          setBreakCount(true);
+          setSessionType("BREAK!");
+          bell.play();
+          setMin(breakLength);
+          setSec(0);
+        }
+        if (breakCount && sec === 0 && min === 0) {
+          setBreakCount(false);
           bell.play();
           return () => clearInterval(interval);
         }
         setSec(sec - 1);
-      }, 500);
+      }, 200);
+
       return () => clearInterval(interval);
     }
-  }, [min, sec, countDown, breakLength, bell]);
+  }, [min, sec, countDown, breakCount, breakLength, bell]);
 
   function handleStart() {
     setCountDown(true);
