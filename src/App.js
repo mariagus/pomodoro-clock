@@ -12,12 +12,20 @@ function App() {
   const [countDown, setCountDown] = useState(false);
 
   const increment = () => {
-    setMins(mins + 1);
-    setMin(min + 1);
+    setMin(mins);
+    setSec(0);
+    if (mins === min) {
+      setMins(mins + 1);
+      setMin(min + 1);
+    }
   };
   const decrement = () => {
-    setMins(mins - 1);
-    setMin(min - 1);
+    setMin(mins);
+    setSec(0);
+    if (mins === min) {
+      setMins(mins - 1);
+      setMin(min - 1);
+    }
   };
 
   const bell = new UIfx(bellAudio);
@@ -41,11 +49,10 @@ function App() {
           return () => clearInterval(interval);
         }
         setSec(sec - 1);
-      }, 1000);
-
+      }, 500);
       return () => clearInterval(interval);
     }
-  }, [min, sec, countDown, bell]);
+  }, [min, sec, countDown, breakLength, bell]);
 
   function handleStart() {
     setCountDown(true);
@@ -70,6 +77,7 @@ function App() {
           setCountDown(false);
           setMin(25);
           setMins(25);
+          setBreakLength(5);
           setSec(0);
         }}
       >
@@ -87,6 +95,7 @@ function App() {
         <div id="session-label">
           SESSION LENGTH:{" "}
           <SessionSetter
+            countDown={countDown}
             mins={mins}
             increment={increment}
             decrement={decrement}
@@ -142,14 +151,20 @@ function SessionSetter(props) {
     <div className="SessionSetter">
       <button
         className="decrement"
-        onClick={() => (props.mins > 1 ? props.decrement() : null)}
+        onClick={() =>
+          props.mins > 1 && props.countDown === false ? props.decrement() : null
+        }
       >
         -
       </button>
       {props.mins}
       <button
         className="increment"
-        onClick={() => (props.mins < 60 ? props.increment() : null)}
+        onClick={() =>
+          props.mins < 60 && props.countDown === false
+            ? props.increment()
+            : null
+        }
       >
         +
       </button>
