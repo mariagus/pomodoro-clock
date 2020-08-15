@@ -12,6 +12,8 @@ function App() {
   const [sessionLength, setSessionLength] = useState(25);
   const [breakCount, setBreakCount] = useState(false);
 
+  const bell = new UIfx(bellAudio);
+
   const increment = () => {
     if (sessionType === "WORK!") {
       setMin(sessionLength);
@@ -37,7 +39,6 @@ function App() {
     }
   };
 
-  const bell = new UIfx(bellAudio);
   const incrementBreak = () => {
     if (sessionType === "BREAK!") {
       setMin(breakLength);
@@ -92,7 +93,7 @@ function App() {
       } else {
         const interval = setInterval(() => {
           setSec(sec - 1);
-        }, 100);
+        }, 1000);
         return () => clearInterval(interval);
       }
     }
@@ -155,7 +156,15 @@ function App() {
 
 function Timer(props) {
   return (
-    <div className="Timer">
+    <div
+      className="Timer"
+      style={{
+        backgroundColor:
+          props.sessionType === "WORK!"
+            ? "rgb(245, 115, 76)"
+            : "rgb(141, 182, 94)",
+      }}
+    >
       <p id="sessionType">{props.sessionType}</p>
       <h1>
         {props.min < 10 ? `0${props.min}` : props.min}:

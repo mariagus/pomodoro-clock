@@ -52,7 +52,6 @@ header {
   flex-direction: column;
   justify-content: center;
   display: flex;
-  background-color: rgb(245, 115, 76);
   height: 40vh;
   width: 40vh;
   border-radius: 50%;
