@@ -66,34 +66,37 @@ function App() {
 
   useEffect(() => {
     if (countDown || breakCount) {
-      if (sec === -1 && min > 0) {
-        setSec(59);
-        setMin(min - 1);
+      if (breakCount) {
+        setSessionType("BREAK!");
       }
-      const interval = setInterval(() => {
-        if (sec === -1 && min === 0) {
-          clearInterval(interval);
-          interval();
-        }
-        if (countDown && sec === 0 && min === 0) {
-          setCountDown(false);
-          setBreakCount(true);
-          setSessionType("BREAK!");
-          bell.play();
-          setMin(breakLength);
-          setSec(0);
-        }
-        if (breakCount && sec === 0 && min === 0) {
-          setBreakCount(false);
-          bell.play();
-          return () => clearInterval(interval);
-        }
-        setSec(sec - 1);
-      }, 200);
-
-      return () => clearInterval(interval);
+      if (countDown) {
+        setSessionType("WORK!");
+      }
+      if (sec === -1 && min > 0) {
+        setMin(min - 1);
+        setSec(59);
+      }
+      if (countDown && sec === -1 && min === 0) {
+        bell.play();
+        setCountDown(false);
+        setBreakCount(true);
+        setMin(breakLength);
+        setSec(0);
+      }
+      if (breakCount && sec === -1 && min === 0) {
+        bell.play();
+        setBreakCount(false);
+        setCountDown(true);
+        setMin(sessionLength);
+        setSec(0);
+      } else {
+        const interval = setInterval(() => {
+          setSec(sec - 1);
+        }, 100);
+        return () => clearInterval(interval);
+      }
     }
-  }, [min, sec, countDown, breakCount, breakLength, bell]);
+  }, [min, sec, countDown, breakCount, sessionLength, breakLength, bell]);
 
   function handleStart() {
     sessionType === "WORK!" ? setCountDown(true) : setBreakCount(true);
@@ -145,6 +148,7 @@ function App() {
           />
         </div>
       </div>
+      <div className="author">designed and coded by Maria Gusova</div>
     </div>
   );
 }

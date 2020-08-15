@@ -89,3 +89,7 @@ header {
   border: none;
   background-color: transparent;
 }
+.author {
+  font-size: small;
+  color: rgb(245, 115, 76);
+}
