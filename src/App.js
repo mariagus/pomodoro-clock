@@ -149,7 +149,16 @@ function App() {
           />
         </div>
       </div>
-      <div className="author">designed and coded by Maria Gusova</div>
+      <div className="author">
+        designed and coded by{" "}
+        <a
+          href="https://github.com/mariagus"
+          target="__blank"
+          className="gitLink"
+        >
+          Maria Gusova
+        </a>
+      </div>
     </div>
   );
 }

@@ -92,3 +92,8 @@ header {
   font-size: small;
   color: rgb(245, 115, 76);
 }
+.gitLink,
+.gitLink:visited {
+  text-decoration: none;
+  color: rgb(245, 115, 76);
+}
