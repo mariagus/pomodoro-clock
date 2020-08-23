@@ -27,7 +27,7 @@ header {
 .SessionSetter {
   align-items: center;
   display: flex;
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding: 1rem;
 }
 #break-label {
@@ -38,8 +38,8 @@ header {
 }
 .BreakSetter {
   display: flex;
-
-  font-size: 2rem;
+  align-items: center;
+  font-size: 2.5rem;
   padding: 1rem;
 }
 #reset {
@@ -77,14 +77,12 @@ header {
 }
 
 .increment {
-  font-size: 1rem;
-  margin: 0.5em;
+  font-size: 2rem;
   border: none;
   background-color: transparent;
 }
 .decrement {
-  font-size: 1rem;
-  margin: 0.5em;
+  font-size: 2rem;
   border: none;
   background-color: transparent;
 }
