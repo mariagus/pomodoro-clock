@@ -183,6 +183,7 @@ function Timer(props) {
         {props.min < 10 ? `0${props.min}` : props.min}:
         {props.sec < 10 ? `0${props.sec}` : props.sec}
       </h1>
+
       <div className="timerButtons">
         <button id="start" onClick={props.handleStart}>
           ▷

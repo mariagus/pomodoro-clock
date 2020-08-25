@@ -6,10 +6,42 @@
   display: flex;
   flex-direction: column;
 }
+.Timer {
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  height: 40vh;
+  width: 40vh;
+  border-radius: 50%;
+  text-align: center;
+}
+#pause {
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: large;
+  background-color: transparent;
+  outline: none;
+}
+#pause:hover {
+  color: black;
+}
+#start {
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: large;
+  background-color: transparent;
+  outline: none;
+}
+#start:hover {
+  color: black;
+}
 #sessionType {
   margin-bottom: 0cm;
   font-size: large;
 }
+
 h1 {
   font-size: 3rem;
 }
@@ -29,6 +61,7 @@ header {
   display: flex;
   font-size: 2.5rem;
   padding: 1rem;
+  justify-content: center;
 }
 #break-label {
   margin-bottom: 0mm;
@@ -41,6 +74,7 @@ header {
   align-items: center;
   font-size: 2.5rem;
   padding: 1rem;
+  justify-content: center;
 }
 #reset {
   font-size: 2rem;
@@ -60,29 +94,6 @@ header {
   }
 }
 
-.Timer {
-  flex-direction: column;
-  justify-content: center;
-  display: flex;
-  height: 40vh;
-  width: 40vh;
-  border-radius: 50%;
-  text-align: center;
-}
-#pause {
-  color: white;
-  border: none;
-  font-weight: bold;
-  font-size: large;
-  background-color: transparent;
-}
-#start {
-  color: white;
-  font-weight: bold;
-  border: none;
-  font-size: large;
-  background-color: transparent;
-}
 .timeSelector {
   display: flex;
   flex-direction: row;
