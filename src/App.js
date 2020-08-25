@@ -11,6 +11,7 @@ function App() {
   const [countDown, setCountDown] = useState(false);
   const [sessionLength, setSessionLength] = useState(25);
   const [breakCount, setBreakCount] = useState(false);
+  const [rotate, setRotate] = useState(0);
 
   const bell = new UIfx(bellAudio);
 
@@ -119,6 +120,7 @@ function App() {
       <button
         id="reset"
         onClick={() => {
+          setRotate(1);
           setSessionType("WORK!");
           setCountDown(false);
           setBreakCount(false);
@@ -127,6 +129,8 @@ function App() {
           setBreakLength(5);
           setSec(0);
         }}
+        onAnimationEnd={() => setRotate(0)}
+        rotate={rotate}
       >
         ⟲
       </button>

@@ -46,6 +46,18 @@ header {
   font-size: 2rem;
   background-color: transparent;
   border: none;
+  outline: none;
+}
+#reset[rotate="1"] {
+  animation: rotate 500ms;
+}
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(359deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+  }
 }
 
 .Timer {
@@ -80,11 +92,13 @@ header {
   font-size: 2rem;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 .decrement {
   font-size: 2rem;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 .author {
   font-size: small;
