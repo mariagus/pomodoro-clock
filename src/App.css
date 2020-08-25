@@ -46,7 +46,7 @@ h1 {
   font-size: 3rem;
 }
 header {
-  margin-top: 20px;
+  margin: 2%;
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -60,7 +60,7 @@ header {
   align-items: center;
   display: flex;
   font-size: 2.5rem;
-  padding: 1rem;
+  padding: 5%;
   justify-content: center;
 }
 #break-label {
@@ -73,7 +73,7 @@ header {
   display: flex;
   align-items: center;
   font-size: 2.5rem;
-  padding: 1rem;
+  padding: 5%;
   justify-content: center;
 }
 #reset {
@@ -112,7 +112,7 @@ header {
   outline: none;
 }
 .author {
-  font-size: small;
+  font-size: 0.8rem;
   color: rgb(245, 115, 76);
 }
 .gitLink,
