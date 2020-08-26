@@ -143,6 +143,7 @@ function App() {
             decrementBreak={decrementBreak}
           />
         </div>
+        <div className="spacer"></div>
         <div id="session-label">
           SESSION LENGTH:{" "}
           <SessionSetter
