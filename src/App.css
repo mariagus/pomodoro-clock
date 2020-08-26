@@ -25,9 +25,7 @@
   outline: none;
   height: 47px;
 }
-#pause:hover {
-  color: black;
-}
+
 #start {
   color: white;
   font-weight: bold;
@@ -36,9 +34,7 @@
   background-color: transparent;
   outline: none;
 }
-#start:hover {
-  color: black;
-}
+
 #sessionType {
   margin-bottom: 0cm;
   font-size: large;
@@ -46,6 +42,7 @@
 
 h1 {
   font-size: 3rem;
+  color: white;
 }
 header {
   margin: 2%;
@@ -82,7 +79,8 @@ header {
   justify-content: space-around;
 }
 #reset {
-  font-size: 2rem;
+  color: rgb(156, 156, 156);
+  font-size: 50px;
   background-color: transparent;
   border: none;
   outline: none;
