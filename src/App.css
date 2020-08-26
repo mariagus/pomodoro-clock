@@ -8,25 +8,14 @@
 }
 
 .Timer {
-  flex-direction: column;
-  justify-content: center;
-  display: flex;
   width: 280px;
   height: 280px;
   border-radius: 50%;
   text-align: center;
 }
-#pause {
-  color: white;
-  border: none;
-  font-weight: bold;
-  font-size: 30px;
-  background-color: transparent;
-  outline: none;
-  height: 47px;
-}
 
-#start {
+#start,
+#pause {
   color: white;
   font-weight: bold;
   border: none;
@@ -36,14 +25,31 @@
 }
 
 #sessionType {
+  position: relative;
   margin-bottom: 0cm;
   font-size: large;
 }
 
-h1 {
-  font-size: 3rem;
+.timeDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin: 50px;
+  font-size: 60px;
   color: white;
+  letter-spacing: 5px;
 }
+.colon {
+  position: fixed;
+}
+.minutes {
+  min-width: 80px;
+}
+.seconds {
+  min-width: 80px;
+}
+
 header {
   margin: 2%;
   font-weight: bold;

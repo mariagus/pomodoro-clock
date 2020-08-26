@@ -183,10 +183,16 @@ function Timer(props) {
       }}
     >
       <p id="sessionType">{props.sessionType}</p>
-      <h1>
-        {props.min < 10 ? `0${props.min}` : props.min}:
-        {props.sec < 10 ? `0${props.sec}` : props.sec}
-      </h1>
+      <div className="timeDisplay">
+        <div className="minutes">
+          {" "}
+          {props.min < 10 ? `0${props.min}` : props.min}
+        </div>
+        <div className="colon">:</div>
+        <div className="seconds">
+          {props.sec < 10 ? `0${props.sec}` : props.sec}
+        </div>
+      </div>
 
       <div className="timerButtons">
         {props.playButton === true ? (
