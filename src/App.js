@@ -12,7 +12,7 @@ function App() {
   const [sessionLength, setSessionLength] = useState(25);
   const [breakCount, setBreakCount] = useState(false);
   const [rotate, setRotate] = useState(0);
-
+  const [playButton, setPlayButton] = useState(true); //trial
   const bell = new UIfx(bellAudio);
 
   const increment = () => {
@@ -102,15 +102,18 @@ function App() {
 
   function handleStart() {
     sessionType === "WORK!" ? setCountDown(true) : setBreakCount(true);
+    setPlayButton(false); //trial
   }
   function handlePause() {
     sessionType === "WORK!" ? setCountDown(false) : setBreakCount(false);
+    setPlayButton(true); //trial
   }
 
   return (
     <div className="App">
       <header>POMODORO CLOCK</header>
       <Timer
+        playButton={playButton}
         handlePause={handlePause}
         sessionType={sessionType}
         handleStart={handleStart}
@@ -186,12 +189,15 @@ function Timer(props) {
       </h1>
 
       <div className="timerButtons">
-        <button id="start" onClick={props.handleStart}>
-          ▷
-        </button>
-        <button id="pause" onClick={props.handlePause}>
-          | |
-        </button>
+        {props.playButton === true ? (
+          <button id="start" onClick={props.handleStart}>
+            ▷
+          </button>
+        ) : (
+          <button id="pause" onClick={props.handlePause}>
+            | |
+          </button>
+        )}
       </div>
     </div>
   );
