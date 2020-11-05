@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import UIfx from "uifx";
 import bellAudio from "./bell.mp3";
 import "./App.css";
+import Timer from "./components/Timer";
+import BreakSetter from "./components/BreakSetter";
+import SessionSetter from "./components/SessionSetter";
 
 function App() {
   const [sessionType, setSessionType] = useState("WORK!"); //state changes to "BREAK" when timer reaches zero.
@@ -12,7 +15,7 @@ function App() {
   const [sessionLength, setSessionLength] = useState(25);
   const [breakCount, setBreakCount] = useState(false);
   const [rotate, setRotate] = useState(0);
-  const [playButton, setPlayButton] = useState(true); //trial
+  const [playButton, setPlayButton] = useState(true);
   const bell = new UIfx(bellAudio);
 
   const increment = () => {
@@ -102,11 +105,11 @@ function App() {
 
   function handleStart() {
     sessionType === "WORK!" ? setCountDown(true) : setBreakCount(true);
-    setPlayButton(false); //trial
+    setPlayButton(false);
   }
   function handlePause() {
     sessionType === "WORK!" ? setCountDown(false) : setBreakCount(false);
-    setPlayButton(true); //trial
+    setPlayButton(true);
   }
 
   return (
@@ -167,89 +170,6 @@ function App() {
           Maria Gusova
         </a>
       </div>
-    </div>
-  );
-}
-
-function Timer(props) {
-  return (
-    <div
-      className="Timer"
-      style={{
-        backgroundColor:
-          props.sessionType === "WORK!"
-            ? "rgb(245, 115, 76)"
-            : "rgb(141, 182, 94)",
-      }}
-    >
-      <p id="sessionType">{props.sessionType}</p>
-      <div className="timeDisplay">
-        <div className="minutes">
-          {" "}
-          {props.min < 10 ? `0${props.min}` : props.min}
-        </div>
-        <div className="colon">:</div>
-        <div className="seconds">
-          {props.sec < 10 ? `0${props.sec}` : props.sec}
-        </div>
-      </div>
-
-      <div className="timerButtons">
-        {props.playButton === true ? (
-          <button id="start" onClick={props.handleStart}>
-            ▷
-          </button>
-        ) : (
-          <button id="pause" onClick={props.handlePause}>
-            | |
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function BreakSetter(props) {
-  return (
-    <div className="BreakSetter">
-      <button
-        className="decrement"
-        onClick={() => (props.breakLength > 1 ? props.decrementBreak() : null)}
-      >
-        -
-      </button>
-      {props.breakLength}
-      <button
-        className="increment"
-        onClick={() => (props.breakLength < 60 ? props.incrementBreak() : null)}
-      >
-        +
-      </button>
-    </div>
-  );
-}
-function SessionSetter(props) {
-  return (
-    <div className="SessionSetter">
-      <button
-        className="decrement"
-        onClick={() =>
-          props.mins > 1 && props.countDown === false ? props.decrement() : null
-        }
-      >
-        -
-      </button>
-      {props.mins}
-      <button
-        className="increment"
-        onClick={() =>
-          props.mins < 60 && props.countDown === false
-            ? props.increment()
-            : null
-        }
-      >
-        +
-      </button>
     </div>
   );
 }

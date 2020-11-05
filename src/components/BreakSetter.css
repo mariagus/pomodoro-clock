@@ -1,0 +1,13 @@
+#break-label {
+  margin-bottom: 0mm;
+  text-align: center;
+  font-size: 1rem;
+  padding: 2%;
+}
+.BreakSetter {
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  padding: 5%;
+  justify-content: space-around;
+}

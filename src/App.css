@@ -6,14 +6,6 @@
   display: flex;
   flex-direction: column;
 }
-
-.Timer {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  text-align: center;
-}
-
 #start,
 #pause {
   color: white;
@@ -23,13 +15,11 @@
   background-color: transparent;
   outline: none;
 }
-
 #sessionType {
   position: relative;
   margin-bottom: 0cm;
   font-size: large;
 }
-
 .timeDisplay {
   display: flex;
   flex-direction: row;
@@ -49,41 +39,15 @@
 .seconds {
   min-width: 80px;
 }
-
 header {
   margin: 2%;
   font-weight: bold;
   font-size: 1.5rem;
 }
-#session-label {
-  margin-bottom: 0mm;
-  text-align: center;
-  font-size: 1rem;
-  padding: 2%;
-}
-.SessionSetter {
-  align-items: center;
-  display: flex;
-  font-size: 2rem;
-  padding: 5%;
-  justify-content: space-around;
-}
 .spacer {
   width: 10%;
 }
-#break-label {
-  margin-bottom: 0mm;
-  text-align: center;
-  font-size: 1rem;
-  padding: 2%;
-}
-.BreakSetter {
-  align-items: center;
-  display: flex;
-  font-size: 2rem;
-  padding: 5%;
-  justify-content: space-around;
-}
+
 #reset {
   color: rgb(156, 156, 156);
   font-size: 50px;
